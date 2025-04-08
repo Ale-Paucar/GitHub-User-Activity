@@ -10,21 +10,30 @@ public class User {
     private int followers;
     private int following;
 
+    public User(String login, String id, String avatarUrl, String htmlUrl, int followers, int following) {
+        this.login = login;
+        this.id = id;
+        this.avatarUrl = avatarUrl;
+        this.htmlUrl = htmlUrl;
+        this.followers = followers;
+        this.following = following;
+    }
+
     public static void gsonPorrofSuser() {
         // JSON de ejemplo, puede ser más simple o complejo
-        String json = "{\"login\":\"octocat\",\"id\":\"1\",\"followers\":500}";
+
 
         // Crear una instancia de Gson
         Gson gson = new Gson();
 
         // Convertir el JSON a un objeto Java (User)
-        User user = gson.fromJson(json, User.class);
+        User user = new User("ale","asdas13121312","asdaURL","jtmlsadaURL",12,2131);
 
         // Convertir el objeto Java de nuevo a JSON (solo para mostrar)
         String jsonOutput = gson.toJson(user);
 
         // Imprimir el JSON original y el nuevo JSON generado
-        System.out.println("JSON original: " + json);
+
         System.out.println("JSON generado desde el objeto: " + jsonOutput);
     }
 
