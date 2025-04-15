@@ -1,11 +1,14 @@
 package org.alepaucar.githubuseractivity.cli;
 
-import org.alepaucar.githubuseractivity.models.User;
-import org.alepaucar.githubuseractivity.repositories.FetchData;
 
+import org.alepaucar.githubuseractivity.repositories.FetchData;
+import org.alepaucar.githubuseractivity.services.FetchService;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-import static org.alepaucar.githubuseractivity.models.User.main;
+
 
 public class CliApp {
     private final Scanner scanner;
@@ -17,14 +20,24 @@ public class CliApp {
     public void start(){
         System.out.println("----------------------------------------------------");
         System.out.println("-------------------TASK TRACKER---------------------");
+        while (true){
+            System.out.println("Please enter the github user name:");
+            String input = scanner.nextLine().trim();
+            String encodedUsername = URLEncoder.encode(input, StandardCharsets.UTF_8);
+            FetchService data = new FetchService("https://api.github.com/users/"+encodedUsername+"/events");
 
-        FetchData fetch = new FetchData("https://api.github.com/users/Ale-Paucar/events");
+            if(data.getStatus().equals("success")){
 
+            }else if(data.getStatus().equals("error")){
+                System.out.println("Error: "+data.getMessage());
+            }else{
+                System.out.println("Something went wrong");
+                return;
+            }
 
+            System.out.println(data.getJsonData());
+        }
 
-        System.out.println(fetch.getStatus());
-        System.out.println(fetch.getMessage());
-        System.out.println(fetch.getData());
 
     }
 }
