@@ -1,5 +1,7 @@
 package org.alepaucar.githubuseractivity.models;
 
+import java.time.LocalDateTime;
+
 public class Event {
     private String type;
     private int repoID;
@@ -8,8 +10,9 @@ public class Event {
     private String action;
     private String issueTitle;
     private String description;
+    private LocalDateTime date;
 
-    public Event(String type, int repoID, String repoName, int commitsSize, String action, String issueTitle, String description) {
+    public Event(String type, int repoID, String repoName, int commitsSize, String action, String issueTitle, String description, LocalDateTime date) {
         this.type = type;
         this.repoID = repoID;
         this.repoName = repoName;
@@ -17,53 +20,38 @@ public class Event {
         this.action = action;
         this.issueTitle = issueTitle;
         this.description = description;
+        this.date = date;
     }
 
     public String getType() {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public int getRepoID() {
         return repoID;
-    }
-
-    public void setRepoID(int repoID) {
-        this.repoID = repoID;
     }
 
     public String getRepoName() {
         return repoName;
     }
 
-    public void setRepoName(String repoName) {
-        this.repoName = repoName;
-    }
-
     public int getCommitsSize() {
         return commitsSize;
-    }
-
-    public void setCommitsSize(int commitsSize) {
-        this.commitsSize = commitsSize;
     }
 
     public String getAction() {
         return action;
     }
 
-    public void setAction(String action) {
-        this.action = action;
-    }
-
     public String getIssueTitle() {
         return issueTitle;
     }
 
-    public void setIssueTitle(String issueTitle) {
-        this.issueTitle = issueTitle;
+    public String getDescription() {
+        return description;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
     }
 }

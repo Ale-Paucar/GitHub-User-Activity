@@ -5,13 +5,16 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.alepaucar.githubuseractivity.models.Event;
 
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ParseJsonService {
+
     private ParseJsonService(){};
 
-    public static List<Event> parse(String rawJson){
+    public static List<Event> parseJsonToEvents(String rawJson){
         JsonParser parser = new JsonParser();
         JsonArray gsonArray = parser.parse(rawJson).getAsJsonArray();
         List<Event> allEvents = new ArrayList<>();
@@ -23,6 +26,10 @@ public class ParseJsonService {
             int repoID = repo.get("id").getAsInt();
             String repoName = repo.get("name").getAsString();
             JsonObject payload = gsonObj.get("payload").getAsJsonObject();
+            String dateString = gsonObj.get("created_at").getAsString();
+            //parseo
+            OffsetDateTime offsetDateTime = OffsetDateTime.parse(dateString);
+            LocalDateTime date = offsetDateTime.toLocalDateTime();
 
             int commitsSize = -1;
             String action = null;
@@ -52,7 +59,7 @@ public class ParseJsonService {
             }
 
             // Crear el objeto Event con la información del CreateEvent
-            allEvents.add(new Event(type, repoID, repoName, commitsSize, action, issueTitle, description));
+            allEvents.add(new Event(type, repoID, repoName, commitsSize, action, issueTitle, description, date));
         }
 
         return allEvents;
