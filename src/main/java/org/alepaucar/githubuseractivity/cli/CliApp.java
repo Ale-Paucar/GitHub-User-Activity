@@ -22,8 +22,8 @@ public class CliApp {
     }
 
     public void start() {
-        System.out.println("----------------------------------------------------");
-        System.out.println("-------------------TASK TRACKER---------------------");
+        System.out.println("----------------------------------------------------------");
+        System.out.println("-------------------GITHUB USER ACTIVITY---------------------");
 
         while (true) {
             System.out.println("Please enter the github user name:");
