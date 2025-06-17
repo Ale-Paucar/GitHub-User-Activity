@@ -1,5 +1,5 @@
 # GitHub User Activity Tracker
-## https://roadmap.sh/projects/task-tracker
+## https://roadmap.sh/projects/github-user-activity
 Este proyecto permite obtener y mostrar la actividad reciente de un usuario de GitHub, como los commits realizados, los pull requests y los comentarios en los issues. Actualmente, el proyecto solo maneja los siguientes tipos de eventos de GitHub:
 
 - `PushEvent`
