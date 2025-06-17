@@ -39,7 +39,10 @@ public class ParseJsonService {
 
             switch (type) {
                 case "CreateEvent":
-                    description = payload.has("description") ? payload.get("description").getAsString() : null;
+                    //Aca habia un porblema cuando a veces si existe la key "description" pero el value es null
+                    description = payload.has("description") && !payload.get("description").isJsonNull()
+                            ? payload.get("description").getAsString()
+                            : null;
                     break;
 
                 case "PushEvent":
